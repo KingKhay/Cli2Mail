@@ -9,9 +9,9 @@ import picocli.CommandLine;
 
 @Component
 @CommandLine.Command(name = "send",
-        description = "Command to send mail",
+        description = "%nCommand to send mail",
         mixinStandardHelpOptions = true,
-        optionListHeading = "%Options are")
+        optionListHeading = "%nOptions are")
 @RequiredArgsConstructor
 public class SendMailCommand implements Runnable{
     private final EmailServiceImpl emailService;

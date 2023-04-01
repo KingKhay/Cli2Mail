@@ -8,14 +8,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import picocli.CommandLine;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 @SpringBootApplication
 @RequiredArgsConstructor
-public class Cli2MailApplication implements CommandLineRunner, ExitCodeGenerator {
+public class Cli2MailApplication implements CommandLineRunner{
 
 	private final MailCommand mailCommand;
 	private final CommandLine.IFactory factory;
 
-	private int exitCode;
+	private final Scanner scanner = new Scanner(System.in);
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(Cli2MailApplication.class, args);
@@ -23,13 +27,7 @@ public class Cli2MailApplication implements CommandLineRunner, ExitCodeGenerator
 
 	@Override
 	public void run(String... args) throws Exception {
-		exitCode = new CommandLine(mailCommand, factory).execute(args);
-		System.exit(exitCode);
-	}
 
-
-	@Override
-	public int getExitCode() {
-		return exitCode;
-	}
+			new CommandLine(mailCommand, factory).execute(args);
+		}
 }
